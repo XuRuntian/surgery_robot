@@ -1,0 +1,640 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mujoco>
+  <option gravity="0 0 -9.81" integrator="implicitfast" timestep="0.002" iterations="50" tolerance="1e-8" density="1000" viscosity="0.001" wind="0 0 0" solver="Newton" />
+  <compiler autolimits="true" meshdir="assets" angle="radian" inertiafromgeom="true" coordinate="local" />
+  <!-- 已确保angle为radian，关节和控制器均为弧度制 -->
+  <visual>
+    <rgba haze=".3 .3 .3 1"/>
+  </visual>
+
+  <!-- 背景、地面 -->
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.6 0.6 0.6" rgb2="0 0 0" width="512" height="512"/>
+    <texture name="texplane" type="2d" builtin="checker" rgb1=".25 .25 .25" rgb2=".3 .3 .3" width="512" height="512" mark="cross" markrgb=".8 .8 .8"/>
+    <material name="matplane" reflectance="0.3" texture="texplane" texrepeat="1 1" texuniform="true"/>
+  </asset>
+  
+  <!-- 机器人零件STL -->
+  <asset>
+    <!-- base -->
+    <mesh file="assem_simplified___base_2__an_zhuang_di_ban_s_1.stl"/>
+    <mesh file="assem_simplified___base_2__dao_gui_gan_di__1.stl"/>
+    <mesh file="assem_simplified___base_2__dao_gui_gan_di__2.stl"/>
+    <mesh file="assem_simplified___base_2__dai_jue_bian_dian_ji__1.stl"/>
+    <mesh file="assem_simplified___base_2__di_zuo_ce_ban__1.stl"/>
+    <mesh file="assem_simplified___base_2__di_zuo_ce_ban__3.stl"/>
+    <mesh file="assem_simplified___base_2__ti_xing_si_gang____you_xuan___12x480_1.stl"/>
+    <mesh file="assem_simplified___base_2__dian_ji_ke__1.stl"/>
+    <mesh file="assem_simplified___base_2__ju_xing_si_gang____you_xuan___8x180_1.stl"/>
+
+    <!-- link_body -->
+    <mesh file="assem_simplified___link_body_2_m3_luo_ding__1.stl"/>
+    <mesh file="assem_simplified___link_body_2_m3_luo_ding__3.stl"/>
+    <mesh file="assem_simplified___link_body_2_m3_luo_ding__4.stl"/>
+    <mesh file="assem_simplified___link_body_2_m3_luo_ding__5.stl"/>
+    <mesh file="assem_simplified___link_body_2_m5_luo_ding__1.stl"/>
+    <mesh file="assem_simplified___link_body_2_m5_luo_ding__10.stl"/>
+    <mesh file="assem_simplified___link_body_2_m5_luo_ding__11.stl"/>
+    <mesh file="assem_simplified___link_body_2_m5_luo_ding__12.stl"/>
+    <mesh file="assem_simplified___link_body_2_m5_luo_ding__13.stl"/>
+    <mesh file="assem_simplified___link_body_2_m5_luo_ding__14.stl"/>
+    <mesh file="assem_simplified___link_body_2_m5_luo_ding__15.stl"/>
+    <mesh file="assem_simplified___link_body_2_m5_luo_ding__9.stl"/>
+    <mesh file="assem_simplified___link_body_2__shang_gai_wai_ke__1.stl"/>
+    <mesh file="assem_simplified___link_body_2__si_dao_xiang_tiao_zheng_ji_gou_ji_zuo__1.stl"/>
+    <mesh file="assem_simplified___link_body_2__ji_zuo_gai_ban__1.stl"/>
+    <mesh file="assem_simplified___link_body_2__she_liu_guan__1.stl"/>
+    <mesh file="assem_simplified___link_body_2__di_ban_zong_zhuang__1.stl"/>
+    <mesh file="assem_simplified___link_body_2__di_he_wai_ke__1.stl"/>
+    <mesh file="assem_simplified___link_body_2__dang_pian__1.stl"/>
+    <mesh file="assem_simplified___link_body_2__jie_gui_jia_zu__1__jie_gui_jia_jiao__1.stl"/>
+    <mesh file="assem_simplified___link_body_2__jie_gui_jia_zu__1__zhi_xian_zhou_cheng__1.stl"/>
+    <mesh file="assem_simplified___link_body_2__jie_gui_jia_zu__2__jie_gui_jia_jiao__1.stl"/>
+    <mesh file="assem_simplified___link_body_2__jie_gui_jia_zu__2__zhi_xian_zhou_cheng__1.stl"/>
+    <mesh file="assem_simplified___link_body_2__jie_gui_jia_zu___fan___1__jie_gui_jia_jiao__1.stl"/>
+    <mesh file="assem_simplified___link_body_2__jie_gui_jia_zu___fan___1__zhi_xian_zhou_cheng__1.stl"/>
+    <mesh file="assem_simplified___link_body_2__jie_gui_jia_zu___fan___2__jie_gui_jia_jiao__1.stl"/>
+    <mesh file="assem_simplified___link_body_2__jie_gui_jia_zu___fan___2__zhi_xian_zhou_cheng__1.stl"/>
+    <mesh file="assem_simplified___link_body_2__qu_dong_ji_gou_di_ban__1.stl"/>
+
+    <!-- link_shaft -->
+    <mesh file="assem_simplified___link_shaft_assem_simplified_1__gong_ju_gan__1.stl"/>
+    <mesh file="assem_simplified___link_shaft_assem_simplified_1__gou_xing_5_1.stl"/>
+
+    <!-- linka_1 -->
+    <mesh file="assem_simplified___linka_1_assem_simplified_1_linka_1_1.stl"/>
+    <!-- linka_2 -->
+    <mesh file="assem_simplified___linka_2_assem_simplified_1_linka_1_1.stl"/>
+    <!-- linka_3 -->
+    <mesh file="assem_simplified___linka_3_assem_simplified_1_linka_1_1.stl"/>
+    <!-- linka_4 -->
+    <mesh file="assem_simplified___linka_4_assem_simplified_1_linka_1_1.stl"/>
+    <!-- linka_5 -->
+    <mesh file="assem_simplified___linka_5_assem_simplified_1_linka_1_1.stl"/>
+    <!-- linka_6 -->
+    <mesh file="assem_simplified___linka_6_assem_simplified_1_linka_1_1.stl"/>
+    <!-- linka_7 -->
+    <mesh file="assem_simplified___linka_7_assem_simplified_1_linka_1_1.stl"/>
+    <!-- linka_8 -->
+    <mesh file="assem_simplified___linka_8_assem_simplified_1_linka_1_1.stl"/>
+    <!-- linka_9 -->
+    <mesh file="assem_simplified___linka_9_assem_simplified_1_linka_1_1.stl"/>
+    <!-- linka_10 -->
+    <mesh file="assem_simplified___linka_10_assem_simplified_1_linka_1_1.stl"/>
+    <!-- linka_11 -->
+    <mesh file="assem_simplified___linka_11_assem_simplified_1_linka_1_1.stl"/>
+    <!-- linka_12 -->
+    <mesh file="assem_simplified___linka_12_assem_simplified_1_linka_1_1.stl"/>
+    <!-- linka_13 -->
+    <mesh file="assem_simplified___linka_13_assem_simplified_1_linka_1_1.stl"/>
+    <!-- linka_14 -->
+    <mesh file="assem_simplified___linka_14_assem_simplified_1_linka_1_1.stl"/>
+    <!-- linka_15 -->
+    <mesh file="assem_simplified___linka_15_assem_simplified_1_linka_1_1.stl"/>
+    <!-- linka_16 -->
+    <mesh file="assem_simplified___linka_16_assem_simplified_1_linka_1_1.stl"/>
+    <!-- linka_17 -->
+    <mesh file="assem_simplified___linka_17_assem_simplified_1_linka_1_1.stl"/>
+    <!-- linka_18 -->
+    <mesh file="assem_simplified___linka_18_assem_simplified_1_linka_1_1.stl"/>
+    <!-- linka_19 -->
+    <mesh file="assem_simplified___linka_19_assem_simplified_1_linka_1_1.stl"/>
+    <!-- linka_20 -->
+    <mesh file="assem_simplified___linka_20_assem_simplified_1_linka_1_1.stl"/>
+    <!-- linka_21 -->
+    <mesh file="assem_simplified___linka_21_assem_simplified_1_linka_1_1.stl"/>
+    <!-- linka_22 -->
+    <mesh file="assem_simplified___linka_22_assem_simplified_1_linka_1_1.stl"/>
+    <!-- linka_23 -->
+    <mesh file="assem_simplified___linka_23_assem_simplified_1_linka_1_1.stl"/>
+    <!-- linka_24 -->
+    <mesh file="assem_simplified___linka_24_assem_simplified_1_linka_1_1.stl"/>
+    <!-- linkb -->
+    <mesh file="assem_simplified___linkb_assem_simplified_1__gou_xing_2_1.stl"/>
+    <!-- linkc_1 -->
+    <mesh file="assem_simplified___linkc_1_assem_simplified_1__gou_xing_3__15___1.stl"/>
+    <!-- linkc_2 -->
+    <mesh file="assem_simplified___linkc_2_assem_simplified_1__gou_xing_3__15___1.stl"/>
+    <!-- linkc_3 -->
+    <mesh file="assem_simplified___linkc_3_assem_simplified_1__gou_xing_3__15___1.stl"/>
+    <!-- linkc_4 -->
+    <mesh file="assem_simplified___linkc_4_assem_simplified_1__gou_xing_3__15___1.stl"/>
+    <!-- linkc_5 -->
+    <mesh file="assem_simplified___linkc_5_assem_simplified_1__gou_xing_3__15___1.stl"/>
+    <!-- linkc_6 -->
+    <mesh file="assem_simplified___linkc_6_assem_simplified_1__gou_xing_3__15___1.stl"/>
+    <!-- linkc_7 -->
+    <mesh file="assem_simplified___linkc_7_assem_simplified_1__gou_xing_3__15___1.stl"/>
+    <!-- linkc_8 -->
+    <mesh file="assem_simplified___linkc_8_assem_simplified_1__gou_xing_3__15___1.stl"/>
+    <!-- linkc_9 -->
+    <mesh file="assem_simplified___linkc_9_assem_simplified_1__gou_xing_3__15___1.stl"/>
+    <!-- linkc_10 -->
+    <mesh file="assem_simplified___linkc_10_assem_simplified_1__gou_xing_3__15___1.stl"/>
+    <!-- linkc_11 -->
+    <mesh file="assem_simplified___linkc_11_assem_simplified_1__gou_xing_3__15___1.stl"/>
+    <!-- linkc_12 -->
+    <mesh file="assem_simplified___linkc_12_assem_simplified_1__gou_xing_4_1.stl"/>
+  </asset>
+
+  <default>
+    <general ctrllimited="true"/>
+    <default class="base_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="link_body_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="link_shaft_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linka_1_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linka_2_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linka_3_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linka_4_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linka_5_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linka_6_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linka_7_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linka_8_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linka_9_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linka_10_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linka_11_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linka_12_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linka_13_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linka_14_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linka_15_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linka_16_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linka_17_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linka_18_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linka_19_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linka_20_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linka_21_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linka_22_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linka_23_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linka_24_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linkb_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linkc_1_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linkc_2_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linkc_3_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linkc_4_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linkc_5_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linkc_6_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linkc_7_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linkc_8_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linkc_9_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linkc_10_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linkc_11_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+    <default class="linkc_12_default">
+    <geom contype="0" conaffinity="0"/>
+    </default>
+  </default>
+
+  <default>
+    <default class="joints">
+      <joint limited="true" solreflimit="0.001 1" armature="1e-06"/>
+      <default class="continuum">
+        <joint group="3" stiffness="1.0" range="-0.2617993877991494 0.2617993877991494" damping="0.02"/>
+        <general ctrlrange="-0.2617993877991494 0.2617993877991494"/>
+      </default>
+    </default>
+  </default>
+
+  <worldbody>
+  <geom name="floor" pos="0 0 0" size="0 0 1" type="plane" material="matplane"/>
+  
+  <!-- 主要照明：定向光源，模拟阳光 -->
+  <light directional="true" ambient="0.4 0.4 0.4" diffuse="0.8 0.8 0.8" specular="0.3 0.3 0.3" pos="3 3 3" dir="-1 -1 -1"/>
+  
+  <!-- 补充照明：点光源，提供整体亮度 -->
+  <light pos="0 2 2" diffuse="0.5 0.5 0.5" specular="0.2 0.2 0.2"/>
+  <light pos="2 0 2" diffuse="0.5 0.5 0.5" specular="0.2 0.2 0.2"/>
+  <light pos="-2 0 2" diffuse="0.5 0.5 0.5" specular="0.2 0.2 0.2"/>
+  <light pos="0 -2 2" diffuse="0.5 0.5 0.5" specular="0.2 0.2 0.2"/>
+  
+  <body name="base_body" pos="0 0 0">
+    <geom type="mesh" mesh="assem_simplified___base_2__an_zhuang_di_ban_s_1" mass="0.1" class="base_default"/>
+    <geom type="mesh" mesh="assem_simplified___base_2__dao_gui_gan_di__1" mass="0.01" class="base_default"/>
+    <geom type="mesh" mesh="assem_simplified___base_2__dao_gui_gan_di__2" mass="0.01" class="base_default"/>
+    <geom type="mesh" mesh="assem_simplified___base_2__dai_jue_bian_dian_ji__1" mass="0.01" class="base_default"/>
+    <geom type="mesh" mesh="assem_simplified___base_2__di_zuo_ce_ban__1" mass="0.0001" class="base_default"/>
+    <geom type="mesh" mesh="assem_simplified___base_2__di_zuo_ce_ban__3" mass="0.0001" class="base_default"/>
+    <geom type="mesh" mesh="assem_simplified___base_2__ti_xing_si_gang____you_xuan___12x480_1" mass="0.0001" class="base_default"/>
+    <geom type="mesh" mesh="assem_simplified___base_2__dian_ji_ke__1" mass="0.0001" class="base_default"/>
+    <geom type="mesh" mesh="assem_simplified___base_2__ju_xing_si_gang____you_xuan___8x180_1" mass="0.0001" class="base_default"/>
+    
+    <body name="link_body_body" pos="0 0.1175 0.053" zaxis="0 1 0">
+      <joint name="linear_joint" type="slide" pos="0 0 0" axis="0 0 1" stiffness="10.0" range="0.0 0.25500" damping="200"/>
+      <geom type="mesh" mesh="assem_simplified___link_body_2_m3_luo_ding__1" mass="0.001" class="link_body_default"/>
+      <geom type="mesh" mesh="assem_simplified___link_body_2_m3_luo_ding__3" mass="0.001" class="link_body_default"/>
+      <geom type="mesh" mesh="assem_simplified___link_body_2_m3_luo_ding__4" mass="0.001" class="link_body_default"/>
+      <geom type="mesh" mesh="assem_simplified___link_body_2_m3_luo_ding__5" mass="0.001" class="link_body_default"/>
+      <geom type="mesh" mesh="assem_simplified___link_body_2_m5_luo_ding__1" mass="0.001" class="link_body_default"/>
+      <geom type="mesh" mesh="assem_simplified___link_body_2_m5_luo_ding__10" mass="0.001" class="link_body_default"/>
+      <geom type="mesh" mesh="assem_simplified___link_body_2_m5_luo_ding__11" mass="0.001" class="link_body_default"/>
+      <geom type="mesh" mesh="assem_simplified___link_body_2_m5_luo_ding__12" mass="0.001" class="link_body_default"/>
+      <geom type="mesh" mesh="assem_simplified___link_body_2_m5_luo_ding__13" mass="0.001" class="link_body_default"/>
+      <geom type="mesh" mesh="assem_simplified___link_body_2_m5_luo_ding__14" mass="0.001" class="link_body_default"/>
+      <geom type="mesh" mesh="assem_simplified___link_body_2_m5_luo_ding__15" mass="0.001" class="link_body_default"/>
+      <geom type="mesh" mesh="assem_simplified___link_body_2_m5_luo_ding__9" mass="0.001" class="link_body_default"/>
+      <geom type="mesh" mesh="assem_simplified___link_body_2__shang_gai_wai_ke__1" mass="0.1" class="link_body_default"/>
+      <geom type="mesh" mesh="assem_simplified___link_body_2__si_dao_xiang_tiao_zheng_ji_gou_ji_zuo__1" mass="0.001" class="link_body_default"/>
+      <geom type="mesh" mesh="assem_simplified___link_body_2__ji_zuo_gai_ban__1" mass="0.1" class="link_body_default"/>
+      <geom type="mesh" mesh="assem_simplified___link_body_2__she_liu_guan__1" mass="0.005" class="link_body_default"/>
+      <geom type="mesh" mesh="assem_simplified___link_body_2__di_ban_zong_zhuang__1" mass="0.1" class="link_body_default"/>
+      <geom type="mesh" mesh="assem_simplified___link_body_2__di_he_wai_ke__1" mass="0.1" class="link_body_default"/>
+      <geom type="mesh" mesh="assem_simplified___link_body_2__dang_pian__1" mass="0.01" class="link_body_default"/>
+      <geom type="mesh" mesh="assem_simplified___link_body_2__jie_gui_jia_zu__1__jie_gui_jia_jiao__1" mass="0.01" class="link_body_default"/>
+      <geom type="mesh" mesh="assem_simplified___link_body_2__jie_gui_jia_zu__1__zhi_xian_zhou_cheng__1" mass="0.01" class="link_body_default"/>
+      <geom type="mesh" mesh="assem_simplified___link_body_2__jie_gui_jia_zu__2__jie_gui_jia_jiao__1" mass="0.01" class="link_body_default"/>
+      <geom type="mesh" mesh="assem_simplified___link_body_2__jie_gui_jia_zu__2__zhi_xian_zhou_cheng__1" mass="0.01" class="link_body_default"/>
+      <geom type="mesh" mesh="assem_simplified___link_body_2__jie_gui_jia_zu___fan___1__jie_gui_jia_jiao__1" mass="0.01" class="link_body_default"/>
+      <geom type="mesh" mesh="assem_simplified___link_body_2__jie_gui_jia_zu___fan___1__zhi_xian_zhou_cheng__1" mass="0.01" class="link_body_default"/>
+      <geom type="mesh" mesh="assem_simplified___link_body_2__jie_gui_jia_zu___fan___2__jie_gui_jia_jiao__1" mass="0.01" class="link_body_default"/>
+      <geom type="mesh" mesh="assem_simplified___link_body_2__jie_gui_jia_zu___fan___2__zhi_xian_zhou_cheng__1" mass="0.01" class="link_body_default"/>
+      <geom type="mesh" mesh="assem_simplified___link_body_2__qu_dong_ji_gou_di_ban__1" mass="0.0001" class="link_body_default"/>
+      
+      <body name="link_shaft_body" pos="0 -0.154 0.1208">
+        <joint name="j_revolute" type="hinge" pos="0 0 0" axis="0 0 1" range="-6.283185307179586 6.283185307179586" damping="10"/>
+        <geom type="mesh" mesh="assem_simplified___link_shaft_assem_simplified_1__gong_ju_gan__1" mass="0.7" class="link_shaft_default"/>
+        <geom type="mesh" mesh="assem_simplified___link_shaft_assem_simplified_1__gou_xing_5_1" mass="0.01" class="link_shaft_default"/>
+        
+        <body name="linka_1_body" pos="0 0 0.2019" zaxis="0 -1 0">
+          <joint name="ja_1" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+          <geom type="mesh" mesh="assem_simplified___linka_1_assem_simplified_1_linka_1_1" mass="0.00003" class="linka_1_default"/>
+          
+          <body name="linka_2_body" pos="0 0.002 0" zaxis="1 0 0">
+            <joint name="ja_2" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+            <geom type="mesh" mesh="assem_simplified___linka_2_assem_simplified_1_linka_1_1" mass="0.00003" class="linka_2_default"/>
+            
+            <body name="linka_3_body" pos="0 0.002 0" zaxis="-1 0 0">
+              <joint name="ja_3" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+              <geom type="mesh" mesh="assem_simplified___linka_3_assem_simplified_1_linka_1_1" mass="0.00003" class="linka_3_default"/>
+              
+              <body name="linka_4_body" pos="0 0.002 0" zaxis="1 0 0">
+                <joint name="ja_4" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+                <geom type="mesh" mesh="assem_simplified___linka_4_assem_simplified_1_linka_1_1" mass="0.00003" class="linka_4_default"/>
+                
+                <body name="linka_5_body" pos="0 0.002 0" zaxis="-1 0 0">
+                  <joint name="ja_5" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>  
+                  <geom type="mesh" mesh="assem_simplified___linka_5_assem_simplified_1_linka_1_1" mass="0.00003" class="linka_5_default"/>
+                  
+                  <body name="linka_6_body" pos="0 0.002 0" zaxis="1 0 0">
+                    <joint name="ja_6" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+                    <geom type="mesh" mesh="assem_simplified___linka_6_assem_simplified_1_linka_1_1" mass="0.00003" class="linka_6_default"/>
+                    
+                    <body name="linka_7_body" pos="0 0.002 0" zaxis="-1 0 0">
+                      <joint name="ja_7" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+                      <geom type="mesh" mesh="assem_simplified___linka_7_assem_simplified_1_linka_1_1" mass="0.00003" class="linka_7_default"/>
+                      
+                      <body name="linka_8_body" pos="0 0.002 0" zaxis="1 0 0">
+                        <joint name="ja_8" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+                        <geom type="mesh" mesh="assem_simplified___linka_8_assem_simplified_1_linka_1_1" mass="0.00003" class="linka_8_default"/>
+                        
+                        <body name="linka_9_body" pos="0 0.002 0" zaxis="-1 0 0">
+                          <joint name="ja_9" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+                          <geom type="mesh" mesh="assem_simplified___linka_9_assem_simplified_1_linka_1_1" mass="0.00003" class="linka_9_default"/>
+                          
+                          <body name="linka_10_body" pos="0 0.002 0" zaxis="1 0 0">
+                            <joint name="ja_10" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+                            <geom type="mesh" mesh="assem_simplified___linka_10_assem_simplified_1_linka_1_1" mass="0.00003" class="linka_10_default"/>
+                            
+                            <body name="linka_11_body" pos="0 0.002 0" zaxis="-1 0 0">
+                              <joint name="ja_11" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+                              <geom type="mesh" mesh="assem_simplified___linka_11_assem_simplified_1_linka_1_1" mass="0.00003" class="linka_11_default"/>
+                              
+                              <body name="linka_12_body" pos="0 0.002 0" zaxis="1 0 0">
+                                <joint name="ja_12" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+                                <geom type="mesh" mesh="assem_simplified___linka_12_assem_simplified_1_linka_1_1" mass="0.00003" class="linka_12_default" />
+                                
+                                <body name="linka_13_body" pos="0 0.002 0" zaxis="-1 0 0">
+                                  <joint name="ja_13" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+                                  <geom type="mesh" mesh="assem_simplified___linka_13_assem_simplified_1_linka_1_1" mass="0.00003" class="linka_13_default"/>
+                                  
+                                  <body name="linka_14_body" pos="0 0.002 0" zaxis="1 0 0">
+                                    <joint name="ja_14" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+                                    <geom type="mesh" mesh="assem_simplified___linka_14_assem_simplified_1_linka_1_1" mass="0.00003" class="linka_14_default"/>
+                                    
+                                    <body name="linka_15_body" pos="0 0.002 0" zaxis="-1 0 0">
+                                      <joint name="ja_15" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+                                      <geom type="mesh" mesh="assem_simplified___linka_15_assem_simplified_1_linka_1_1" mass="0.00003" class="linka_15_default"/>
+                                      
+                                      <body name="linka_16_body" pos="0 0.002 0" zaxis="1 0 0">
+                                        <joint name="ja_16" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+                                        <geom type="mesh" mesh="assem_simplified___linka_16_assem_simplified_1_linka_1_1" mass="0.00003" class="linka_16_default"/>
+                                        
+                                        <body name="linka_17_body" pos="0 0.002 0" zaxis="-1 0 0">
+                                          <joint name="ja_17" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+                                          <geom type="mesh" mesh="assem_simplified___linka_17_assem_simplified_1_linka_1_1" mass="0.00003" class="linka_17_default"/>
+                                          
+                                          <body name="linka_18_body" pos="0 0.002 0" zaxis="1 0 0">
+                                            <joint name="ja_18" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+                                            <geom type="mesh" mesh="assem_simplified___linka_18_assem_simplified_1_linka_1_1" mass="0.00003" class="linka_18_default"/>
+                                            
+                                            <body name="linka_19_body" pos="0 0.002 0" zaxis="-1 0 0">
+                                              <joint name="ja_19" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+                                              <geom type="mesh" mesh="assem_simplified___linka_19_assem_simplified_1_linka_1_1" mass="0.00003" class="linka_19_default"/>
+                                              
+                                              <body name="linka_20_body" pos="0 0.002 0" zaxis="1 0 0">
+                                                <joint name="ja_20" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+                                                <geom type="mesh" mesh="assem_simplified___linka_20_assem_simplified_1_linka_1_1" mass="0.00003" class="linka_20_default"/>
+                                                
+                                                <body name="linka_21_body" pos="0 0.002 0" zaxis="-1 0 0">
+                                                  <joint name="ja_21" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+                                                  <geom type="mesh" mesh="assem_simplified___linka_21_assem_simplified_1_linka_1_1" mass="0.00003" class="linka_21_default"/>
+                                                  
+                                                  <body name="linka_22_body" pos="0 0.002 0" zaxis="1 0 0">
+                                                    <joint name="ja_22" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+                                                    <geom type="mesh" mesh="assem_simplified___linka_22_assem_simplified_1_linka_1_1" mass="0.00003" class="linka_22_default"/>
+                                                    
+                                                    <body name="linka_23_body" pos="0 0.002 0" zaxis="-1 0 0">
+                                                      <joint name="ja_23" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+                                                      <geom type="mesh" mesh="assem_simplified___linka_23_assem_simplified_1_linka_1_1" mass="0.00003" class="linka_23_default"/>
+                                                      
+                                                      <body name="linka_24_body" pos="0 0.002 0" zaxis="1 0 0">
+                                                        <joint name="ja_24" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+                                                        <geom type="mesh" mesh="assem_simplified___linka_24_assem_simplified_1_linka_1_1" mass="0.00003" class="linka_24_default"/>
+                                                        
+                                                        <body name="linkb_body" pos="0 0.002 0" zaxis="-1 0 0">
+                                                          <joint name="jb" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+                                                          <geom type="mesh" mesh="assem_simplified___linkb_assem_simplified_1__gou_xing_2_1" mass="0.00004" class="linkb_default"/>
+                                                          
+                                                          <body name="linkc_1_body" pos="0 0.0064 0" zaxis="1 0 0">
+                                                            <joint name="jc_1" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+                                                            <geom type="mesh" mesh="assem_simplified___linkc_1_assem_simplified_1__gou_xing_3__15___1" mass="0.00003" class="linkc_1_default"/>
+                                                            
+                                                            <body name="linkc_2_body" pos="0 0.002 0" zaxis="-1 0 0">
+                                                              <joint name="jc_2" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+                                                              <geom type="mesh" mesh="assem_simplified___linkc_2_assem_simplified_1__gou_xing_3__15___1" mass="0.00003" class="linkc_2_default"/>
+                                                              
+                                                              <body name="linkc_3_body" pos="0 0.002 0" zaxis="1 0 0">
+                                                                <joint name="jc_3" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+                                                                <geom type="mesh" mesh="assem_simplified___linkc_3_assem_simplified_1__gou_xing_3__15___1" mass="0.00003" class="linkc_3_default"/>
+                                                                
+                                                                <body name="linkc_4_body" pos="0 0.002 0" zaxis="-1 0 0">
+                                                                  <joint name="jc_4" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+                                                                  <geom type="mesh" mesh="assem_simplified___linkc_4_assem_simplified_1__gou_xing_3__15___1" mass="0.00003" class="linkc_4_default"/>
+                                                                  
+                                                                  <body name="linkc_5_body" pos="0 0.002 0" zaxis="1 0 0">
+                                                                    <joint name="jc_5" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+                                                                    <geom type="mesh" mesh="assem_simplified___linkc_5_assem_simplified_1__gou_xing_3__15___1" mass="0.00003" class="linkc_5_default"/>
+                                                                    
+                                                                    <body name="linkc_6_body" pos="0 0.002 0" zaxis="-1 0 0">
+                                                                      <joint name="jc_6" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+                                                                      <geom type="mesh" mesh="assem_simplified___linkc_6_assem_simplified_1__gou_xing_3__15___1" mass="0.00003" class="linkc_6_default"/>
+                                                                      
+                                                                      <body name="linkc_7_body" pos="0 0.002 0" zaxis="1 0 0">
+                                                                        <joint name="jc_7" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+                                                                        <geom type="mesh" mesh="assem_simplified___linkc_7_assem_simplified_1__gou_xing_3__15___1" mass="0.00003" class="linkc_7_default"/>
+                                                                        
+                                                                        <body name="linkc_8_body" pos="0 0.002 0" zaxis="-1 0 0">
+                                                                          <joint name="jc_8" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+                                                                          <geom type="mesh" mesh="assem_simplified___linkc_8_assem_simplified_1__gou_xing_3__15___1" mass="0.00003" class="linkc_8_default"/>
+                                                                          
+                                                                          <body name="linkc_9_body" pos="0 0.002 0" zaxis="1 0 0">
+                                                                            <joint name="jc_9" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+                                                                            <geom type="mesh" mesh="assem_simplified___linkc_9_assem_simplified_1__gou_xing_3__15___1" mass="0.00003" class="linkc_9_default"/>
+                                                                            
+                                                                            <body name="linkc_10_body" pos="0 0.002 0" zaxis="-1 0 0">
+                                                                              <joint name="jc_10" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+                                                                              <geom type="mesh" mesh="assem_simplified___linkc_10_assem_simplified_1__gou_xing_3__15___1" mass="0.00003" class="linkc_10_default"/>
+                                                                              
+                                                                              <body name="linkc_11_body" pos="0 0.002 0" zaxis="1 0 0">
+                                                                                <joint name="jc_11" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+                                                                                <geom type="mesh" mesh="assem_simplified___linkc_11_assem_simplified_1__gou_xing_3__15___1" mass="0.00003" class="linkc_11_default"/>
+                                                                                
+                                                                                <body name="linkc_12_body" pos="0 0.002 0" zaxis="-1 0 0">
+                                                                                  <joint name="jc_12" type="hinge" pos="0 0 0" axis="0 0 1" class="continuum"/>
+                                                                                  <geom type="mesh" mesh="assem_simplified___linkc_12_assem_simplified_1__gou_xing_4_1" mass="0.00004" class="linkc_12_default"/>
+                                                                                </body>
+                                                                              </body>
+                                                                            </body>
+                                                                          </body>
+                                                                        </body>
+                                                                      </body>
+                                                                    </body>
+                                                                  </body>
+                                                                </body>
+                                                              </body>
+                                                            </body>
+                                                          </body>
+                                                        </body>
+                                                      </body>
+                                                    </body>
+                                                  </body>
+                                                </body>
+                                              </body>
+                                            </body>
+                                          </body>
+                                        </body>
+                                      </body>
+                                    </body>
+                                  </body>
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </body>
+  </worldbody>
+
+<tendon>
+  <!-- a+b段 奇数关节同步 -->
+  <fixed name="ax">
+    <joint joint="ja_1"   coef="1"/>
+    <joint joint="ja_3"   coef="1"/>
+    <joint joint="ja_5"   coef="1"/>
+    <joint joint="ja_7"   coef="1"/>
+    <joint joint="ja_9"   coef="1"/>
+    <joint joint="ja_11"  coef="1"/>
+    <joint joint="ja_13"  coef="1"/>
+    <joint joint="ja_15"  coef="1"/>
+    <joint joint="ja_17"  coef="1"/>
+    <joint joint="ja_19"  coef="1"/>
+    <joint joint="ja_21"  coef="1"/>
+    <joint joint="ja_23"  coef="1"/>
+    <joint joint="jb"     coef="1"/>
+  </fixed>
+
+  <!-- a+b段 偶数关节同步 -->
+  <fixed name="ay">
+    <joint joint="ja_2"   coef="1"/>
+    <joint joint="ja_4"   coef="1"/>
+    <joint joint="ja_6"   coef="1"/>
+    <joint joint="ja_8"   coef="1"/>
+    <joint joint="ja_10"  coef="1"/>
+    <joint joint="ja_12"  coef="1"/>
+    <joint joint="ja_14"  coef="1"/>
+    <joint joint="ja_16"  coef="1"/>
+    <joint joint="ja_18"  coef="1"/>
+    <joint joint="ja_20"  coef="1"/>
+    <joint joint="ja_22"  coef="1"/>
+    <joint joint="ja_24"  coef="1"/>
+  </fixed>
+
+  <!-- c段 奇数关节同步 -->
+  <fixed name="cx">
+    <joint joint="jc_1"   coef="1"/>
+    <joint joint="jc_3"   coef="1"/>
+    <joint joint="jc_5"   coef="1"/>
+    <joint joint="jc_7"   coef="1"/>
+    <joint joint="jc_9"   coef="1"/>
+    <joint joint="jc_11"  coef="1"/>
+  </fixed>
+
+  <fixed name="cy">
+    <joint joint="jc_2"   coef="1"/>
+    <joint joint="jc_4"   coef="1"/>
+    <joint joint="jc_6"   coef="1"/>
+    <joint joint="jc_8"   coef="1"/>
+    <joint joint="jc_10"  coef="1"/>
+    <joint joint="jc_12"  coef="1"/>
+  </fixed>
+
+</tendon>
+
+<equality>
+
+  <!-- <joint  joint1="ja_1"  joint2="ja_3"  polycoef="0 1 0 0 0"/>
+  <joint  joint1="ja_1"  joint2="ja_5"  polycoef="0 1 0 0 0"/>
+  <joint  joint1="ja_1"  joint2="ja_7"  polycoef="0 1 0 0 0"/>
+  <joint  joint1="ja_1"  joint2="ja_9"  polycoef="0 1 0 0 0"/>
+  <joint  joint1="ja_1"  joint2="ja_11" polycoef="0 1 0 0 0"/>
+  <joint  joint1="ja_1" joint2="ja_13" polycoef="0 1 0 0 0"/>
+  <joint  joint1="ja_1" joint2="ja_15" polycoef="0 1 0 0 0"/>
+  <joint  joint1="ja_1" joint2="ja_17" polycoef="0 1 0 0 0"/>
+  <joint  joint1="ja_1" joint2="ja_19" polycoef="0 1 0 0 0"/>
+  <joint  joint1="ja_1" joint2="ja_21" polycoef="0 1 0 0 0"/>
+  <joint  joint1="ja_1" joint2="ja_23" polycoef="0 1 0 0 0"/>
+  <joint  joint1="ja_1" joint2="jb"    polycoef="0 1 0 0 0"/>
+
+  <joint joint1="ja_2" joint2="ja_4"  polycoef="0 1 0 0 0"/>
+  <joint joint1="ja_2" joint2="ja_6"  polycoef="0 1 0 0 0"/>
+  <joint joint1="ja_2" joint2="ja_8"  polycoef="0 1 0 0 0"/>
+  <joint joint1="ja_2" joint2="ja_10" polycoef="0 1 0 0 0"/>
+  <joint joint1="ja_2" joint2="ja_12" polycoef="0 1 0 0 0"/>
+  <joint joint1="ja_2" joint2="ja_14" polycoef="0 1 0 0 0"/>
+  <joint joint1="ja_2" joint2="ja_16" polycoef="0 1 0 0 0"/>
+  <joint joint1="ja_2" joint2="ja_18" polycoef="0 1 0 0 0"/>
+  <joint joint1="ja_2" joint2="ja_20" polycoef="0 1 0 0 0"/>
+  <joint joint1="ja_2" joint2="ja_22" polycoef="0 1 0 0 0"/>
+  <joint joint1="ja_2" joint2="ja_24" polycoef="0 1 0 0 0"/>
+
+  <joint joint1="jc_1"  joint2="jc_3"  polycoef="0 1 0 0 0"/>
+  <joint joint1="jc_1"  joint2="jc_5"  polycoef="0 1 0 0 0"/>
+  <joint joint1="jc_1"  joint2="jc_7"  polycoef="0 1 0 0 0"/>
+  <joint joint1="jc_1"  joint2="jc_9"  polycoef="0 1 0 0 0"/>
+  <joint joint1="jc_1"  joint2="jc_11" polycoef="0 1 0 0 0"/>
+
+
+  <joint joint1="jc_2"  joint2="jc_4"  polycoef="0 1 0 0 0"/>
+  <joint joint1="jc_2"  joint2="jc_6"  polycoef="0 1 0 0 0"/>
+  <joint joint1="jc_2"  joint2="jc_8"  polycoef="0 1 0 0 0"/>
+  <joint joint1="jc_2"  joint2="jc_10" polycoef="0 1 0 0 0"/>
+  <joint joint1="jc_2"  joint2="jc_12" polycoef="0 1 0 0 0"/> -->
+</equality>
+
+
+  <!-- 驱动器 -->
+  <actuator>
+    <!-- 直线平台控制器 -->
+    <position name="lin_pos_control" joint="linear_joint" ctrlrange="0.0 0.25500" 
+              kp="5000" kv="300.0"  forcerange="-20000 20000" ctrllimited="true" />
+    <!-- 工具杆旋转控制器 -->
+    <position name="j_revolute_pos_control" joint="j_revolute" ctrlrange="-6.283185307179586 6.283185307179586" 
+              kp="3000" kv="100.0" forcerange="-100 100" ctrllimited="true"/>
+    
+    <!-- <general name="a_x" ctrlrange="-0.2617993878 0.2617993878" tendon="ax" forcerange="-5 5" ctrllimited="true"/>
+    <general name="a_y" ctrlrange="-0.2617993878 0.2617993878" tendon="ay" forcerange="-5 5" ctrllimited="true"/>
+    <general name="c_x" ctrlrange="-0.2617993878 0.2617993878" tendon="cx" forcerange="-5 5" ctrllimited="true"/>
+    <general name="c_y" ctrlrange="-0.2617993878 0.2617993878" tendon="cy" forcerange="-5 5" ctrllimited="true"/> -->
+    
+    <position name="a_x" tendon="ax" kp="2000" kv="500" forcerange="-500 500" ctrllimited="true" ctrlrange="-3.14 3.14"/>
+    <position name="a_y" tendon="ay" kp="2000" kv="500" forcerange="-500 500" ctrllimited="true" ctrlrange="-3.14 3.14"/>
+    <position name="c_x" tendon="cx" kp="2000" kv="500" forcerange="-500 500" ctrllimited="true" ctrlrange="-1.57 1.57"/>
+    <position name="c_y" tendon="cy" kp="2000" kv="500" forcerange="-500 500" ctrllimited="true" ctrlrange="-1.57 1.57"/>
+
+  </actuator>
+
+</mujoco>

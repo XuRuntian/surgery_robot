@@ -28,6 +28,8 @@ class TendonPDJointPosController(PDJointPosController):
             f"Agent 主动关节列表含空字符串：{agent.all_joint_names}"
         super().__init__(config, agent)
         self.tendon_groups = agent.tendon_groups
+        print("肌腱组配置：")
+        print(agent.tendon_groups)
         self.control_joint_mapping = self._build_control_mapping()
         self._validate_mapping()  # 校验映射关节无空值
 
@@ -161,7 +163,7 @@ class SurgicalContinuumRobot(BaseAgent):
         return [
             CameraConfig(
                 uid="end_camera",
-                pose=sapien.Pose(p=[0, -0.03, 0.008], q=[0.7071, 0, 0, -0.7071]),
+                pose=sapien.Pose(p=[0, 0.01, 0.008], q=[0.7071, 0, 0, 0.7071]),  # 相对于末端的固定偏移
                 width=1920, height=1080, fov=np.pi/2, near=0.01, far=100,
                 mount=self.robot.links_map[self.ee_link_name],
             ),
